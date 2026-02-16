@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мой маленький пони | Слепцов Валерий</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Comic Neue',cursive;
+color:white;
+text-align:center;
+overflow-x:hidden;
+background:linear-gradient(-45deg,#ff9afc,#a18aff,#7ee8fa,#ffef9f);
+background-size:400% 400%;
+animation:gradient 12s ease infinite;
+}
+
+@keyframes gradient{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+.cloud{
+position:absolute;
+top:80px;
+width:200px;
+opacity:0.6;
+animation:float 50s linear infinite;
+}
+
+@keyframes float{
+from{left:-300px;}
+to{left:100%;}
+}
+
+header{
+padding:60px 20px;
+}
+
+.ponies{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+padding:40px;
+}
+
+.card{
+background:rgba(255,255,255,0.25);
+border-radius:20px;
+padding:15px;
+cursor:pointer;
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.12) rotate(2deg);
+}
+
+.card img{
+width:100%;
+border-radius:15px;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.75);
+justify-content:center;
+align-items:center;
+overflow:auto;
+padding:20px;
+}
+
+.modal-content{
+background:white;
+color:black;
+padding:30px;
+border-radius:20px;
+max-width:600px;
+animation:pop 0.5s ease;
+}
+
+@keyframes pop{
+from{transform:scale(0);}
+to{transform:scale(1);}
+}
+
+.modal-content img{
+width:250px;
+border-radius:15px;
+}
+
+button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+background:#ff66cc;
+color:white;
+border-radius:20px;
+cursor:pointer;
+}
+
+.creator{
+margin-top:60px;
+padding:40px;
+background:rgba(0,0,0,0.3);
+border-top:3px solid white;
+}
+</style>
+</head>
+
+<body>
+
+<img class="cloud" src="https://pngimg.com/uploads/cloud/cloud_PNG16.png">
+
+<header>
+<h1>🌈 Мой маленький пони 🌈</h1>
+<h3>Визитка сайта от Слепцова Валерия</h3>
+</header>
+
+<section class="ponies">
+
+<div class="card" onclick="openModal('Твайлайт Спаркл','Аликорн магии и дружбы. Была ученицей принцессы Селестии, позже стала принцессой дружбы. Любит книги, знания и порядок. Лидер команды Mane Six.','https://upload.wikimedia.org/wikipedia/en/4/4c/Twilight_Sparkle.png')">
+<img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Twilight_Sparkle.png">
+<h3>Твайлайт Спаркл</h3>
+</div>
+
+<div class="card" onclick="openModal('Рейнбоу Дэш','Пегас с радужной гривой. Символ верности. Мечтает вступить в Вандерболтов. Самая быстрая пони Эквестрии. Смелая и уверенная в себе.','https://upload.wikimedia.org/wikipedia/en/5/56/Rainbow_Dash.png')">
+<img src="https://upload.wikimedia.org/wikipedia/en/5/56/Rainbow_Dash.png">
+<h3>Рейнбоу Дэш</h3>
+</div>
+
+<div class="card" onclick="openModal('Пинки Пай','Самая весёлая пони. Организует вечеринки, любит смешить друзей. Символ смеха. Обладает невероятной энергией и оптимизмом.','https://upload.wikimedia.org/wikipedia/en/8/8f/Pinkie_Pie.png')">
+<img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Pinkie_Pie.png">
+<h3>Пинки Пай</h3>
+</div>
+
+<div class="card" onclick="openModal('Рарити','Единорог-дизайнер. Владеет бутиком одежды. Символ щедрости. Любит моду и красоту. Обладает утончённым вкусом.','https://upload.wikimedia.org/wikipedia/en/e/e5/Rarity.png')">
+<img src="https://upload.wikimedia.org/wikipedia/en/e/e5/Rarity.png">
+<h3>Рарити</h3>
+</div>
+
+<div class="card" onclick="openModal('Эпплджек','Трудолюбивая пони с фермы Sweet Apple Acres. Символ честности. Любит семью и традиции. Надёжный и верный друг.','https://upload.wikimedia.org/wikipedia/en/8/8b/Applejack.png')">
+<img src="https://upload.wikimedia.org/wikipedia/en/8/8b/Applejack.png">
+<h3>Эпплджек</h3>
+</div>
+
+<div class="card" onclick="openModal('Флаттершай','Добрая и скромная пони. Любит животных и заботится о них. Символ доброты. Очень чувствительная и отзывчивая.','https://upload.wikimedia.org/wikipedia/en/4/4e/Fluttershy.png')">
+<img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Fluttershy.png">
+<h3>Флаттершай</h3>
+</div>
+
+</section>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<h2 id="name"></h2>
+<img id="img">
+<p id="desc"></p>
+<button onclick="closeModal()">Закрыть</button>
+</div>
+</div>
+
+<section class="creator">
+<h2>👤 Создатель сайта</h2>
+<h3>Слепцов Валерий</h3>
+<p>Этот сайт создан в стиле мультсериала My Little Pony.</p>
+<p>Проект посвящён дружбе, магии и ярким персонажам.</p>
+</section>
+
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function openModal(n,d,i){
+document.getElementById('name').innerText=n;
+document.getElementById('desc').innerText=d;
+document.getElementById('img').src=i;
+document.getElementById('modal').style.display='flex';
+}
+function closeModal(){
+document.getElementById('modal').style.display='none';
+}
+</script>
+
+</body>
+</html>
